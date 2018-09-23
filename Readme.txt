@@ -1,25 +1,25 @@
-Порядок разворачивания:
+РџРѕСЂСЏРґРѕРє СЂР°Р·РІРѕСЂР°С‡РёРІР°РЅРёСЏ:
 
-1. Устанавливаем Connection Strings в файле appsettings.json проекта DateTimeIntervalsServer:
+1. РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј Connection Strings РІ С„Р°Р№Р»Рµ appsettings.json РїСЂРѕРµРєС‚Р° DateTimeIntervalsServer:
 	-  "DefaultConnection": "Data Source=TERMINATOR\\SQLEXPRESS;Initial Catalog=DateTimeIntervals;Integrated Security=True",
 	-  "LoggerConnection":  "Data Source=TERMINATOR\\SQLEXPRESS;Initial Catalog=DateTimeIntervalsServerLogs;Integrated Security=True"
 
-	DefaultConnection - конекшн стринг для базы данных основного приложения
-	LoggerConnection - конекшн стринг для базы данных логов сервера
+	DefaultConnection - РєРѕРЅРµРєС€РЅ СЃС‚СЂРёРЅРі РґР»СЏ Р±Р°Р·С‹ РґР°РЅРЅС‹С… РѕСЃРЅРѕРІРЅРѕРіРѕ РїСЂРёР»РѕР¶РµРЅРёСЏ
+	LoggerConnection - РєРѕРЅРµРєС€РЅ СЃС‚СЂРёРЅРі РґР»СЏ Р±Р°Р·С‹ РґР°РЅРЅС‹С… Р»РѕРіРѕРІ СЃРµСЂРІРµСЂР°
 
-2. Устанавливаем applicationUrl в файле launchSettings.json для проектов:
+2. РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј applicationUrl РІ С„Р°Р№Р»Рµ launchSettings.json РґР»СЏ РїСЂРѕРµРєС‚РѕРІ:
 	
 	DateTimeIntervalsServer - "http://localhost:5800"
 	DateTimeIntervalsLogger - "http://localhost:5900"
 
-3. В проекте DateTimeIntervalsServer открываем Package Manager Console и вводим команды для создания баз данных основного приложения и серверных логов:
+3. Р’ РїСЂРѕРµРєС‚Рµ DateTimeIntervalsServer РѕС‚РєСЂС‹РІР°РµРј Package Manager Console Рё РІРІРѕРґРёРј РєРѕРјР°РЅРґС‹ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ Р±Р°Р· РґР°РЅРЅС‹С… РѕСЃРЅРѕРІРЅРѕРіРѕ РїСЂРёР»РѕР¶РµРЅРёСЏ Рё СЃРµСЂРІРµСЂРЅС‹С… Р»РѕРіРѕРІ:
 	
 	 update-database -context DateTimeIntervalContext
 	 update-database -context LoggerContext
 
-4. В Microsoft SQL Server Management Studio открываем и запускаем на выполнение скрипт createDatabase.sql из корневого каталога репозитория.
-   Он создаёт базу данных и схему для вебсервиса клиентских логов.
+4. Р’ Microsoft SQL Server Management Studio РѕС‚РєСЂС‹РІР°РµРј Рё Р·Р°РїСѓСЃРєР°РµРј РЅР° РІС‹РїРѕР»РЅРµРЅРёРµ СЃРєСЂРёРїС‚ createDatabase.sql РёР· РєРѕСЂРЅРµРІРѕРіРѕ РєР°С‚Р°Р»РѕРіР° СЂРµРїРѕР·РёС‚РѕСЂРёСЏ.
+   РћРЅ СЃРѕР·РґР°С‘С‚ Р±Р°Р·Сѓ РґР°РЅРЅС‹С… Рё СЃС…РµРјСѓ РґР»СЏ РІРµР±СЃРµСЂРІРёСЃР° РєР»РёРµРЅС‚СЃРєРёС… Р»РѕРіРѕРІ.
 
-5. Также в настройка launchSettings.json можно установить флаг "launchBrowser": false
+5. РўР°РєР¶Рµ РІ РЅР°СЃС‚СЂРѕР№РєР° launchSettings.json РјРѕР¶РЅРѕ СѓСЃС‚Р°РЅРѕРІРёС‚СЊ С„Р»Р°Рі "launchBrowser": false
 
-6. Запускаем все 3 приложения и вводим через консольный клиент команды.
+6. Р—Р°РїСѓСЃРєР°РµРј РІСЃРµ 3 РїСЂРёР»РѕР¶РµРЅРёСЏ Рё РІРІРѕРґРёРј С‡РµСЂРµР· РєРѕРЅСЃРѕР»СЊРЅС‹Р№ РєР»РёРµРЅС‚ РєРѕРјР°РЅРґС‹.
