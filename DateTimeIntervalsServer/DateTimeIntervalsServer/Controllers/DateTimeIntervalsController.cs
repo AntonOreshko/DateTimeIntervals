@@ -1,16 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
-using DateTimeIntervalsServer.Data.DomainModels;
-using DateTimeIntervalsServer.Data.Dtos;
-using DateTimeIntervalsServer.Data.Repositories;
-using DateTimeIntervalsServer.Helpers;
-using Microsoft.AspNetCore.Mvc;
+using DateTimeIntervals.Api.Helpers;
+using DateTimeIntervals.DomainLayer.DomainModels;
+using DateTimeIntervals.DomainLayer.Repositories;
+using DateTimeIntervals.Dtos.Dtos;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
-namespace DateTimeIntervalsServer.Controllers
+namespace DateTimeIntervals.Api.Controllers
 {
     [Authorize]
     [Route("api/intervals/{userid}/")]

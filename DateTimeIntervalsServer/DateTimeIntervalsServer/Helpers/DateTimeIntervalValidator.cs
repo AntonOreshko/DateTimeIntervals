@@ -1,6 +1,6 @@
-﻿using DateTimeIntervalsServer.Data.DomainModels;
+﻿using DateTimeIntervals.DomainLayer.DomainModels;
 
-namespace DateTimeIntervalsServer.Helpers
+namespace DateTimeIntervals.Api.Helpers
 {
     public static class DateTimeIntervalValidator
     {

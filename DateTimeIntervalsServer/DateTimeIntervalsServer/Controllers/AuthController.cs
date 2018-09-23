@@ -3,14 +3,15 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using DateTimeIntervalsServer.Data.DomainModels;
-using DateTimeIntervalsServer.Data.Dtos;
-using DateTimeIntervalsServer.Data.Repositories;
+using AutoMapper;
+using DateTimeIntervals.DomainLayer.DomainModels;
+using DateTimeIntervals.DomainLayer.Repositories;
+using DateTimeIntervals.Dtos.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
-namespace DateTimeIntervalsServer.Controllers
+namespace DateTimeIntervals.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -20,9 +21,12 @@ namespace DateTimeIntervalsServer.Controllers
 
         private readonly IConfiguration _configuration;
 
-        public AuthController(IAuthRepository repo, IConfiguration config)
+        private readonly IMapper _mapper;
+
+        public AuthController(IAuthRepository repo, IConfiguration config, IMapper mapper)
         {
             _configuration = config;
+            _mapper = mapper;
             _repo = repo;
         }
 
@@ -33,7 +37,7 @@ namespace DateTimeIntervalsServer.Controllers
             userForRegisterDto.Login = userForRegisterDto.Login.ToLower();
 
             if (await _repo.UserExists(userForRegisterDto.Login))
-                return BadRequest("User already exists");
+                return BadRequest(new {message = "User already exists!"});
 
             var userToCreate = new User()
             {
@@ -42,7 +46,9 @@ namespace DateTimeIntervalsServer.Controllers
 
             var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);
 
-            return StatusCode(201);
+            var returnUser = _mapper.Map<UserForReturnDto>(createdUser);
+
+            return StatusCode(201, returnUser);
         }
 
         [HttpPost("login")]
@@ -75,10 +81,10 @@ namespace DateTimeIntervalsServer.Controllers
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            return Ok(new
-            {
-                token = tokenHandler.WriteToken(token)
-            });
+            var returnUser = _mapper.Map<UserForReturnDto>(userFromRepo);
+            returnUser.Token = tokenHandler.WriteToken(token);
+
+            return Ok(returnUser);
         }
     }
 }

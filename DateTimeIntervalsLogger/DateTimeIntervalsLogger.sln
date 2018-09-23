@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DateTimeIntervalsLogger", "DateTimeIntervalsLogger\DateTimeIntervalsLogger.csproj", "{0D8EBE75-0CDE-44F0-8D4A-301112806983}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DateTimeIntervals.Dtos", "..\DateTimeIntervalsServer\DateTimeIntervals.Dtos\DateTimeIntervals.Dtos.csproj", "{DEA05368-B013-41FF-B16B-1BBBD58625DA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D8EBE75-0CDE-44F0-8D4A-301112806983}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D8EBE75-0CDE-44F0-8D4A-301112806983}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D8EBE75-0CDE-44F0-8D4A-301112806983}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D8EBE75-0CDE-44F0-8D4A-301112806983}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEA05368-B013-41FF-B16B-1BBBD58625DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEA05368-B013-41FF-B16B-1BBBD58625DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEA05368-B013-41FF-B16B-1BBBD58625DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEA05368-B013-41FF-B16B-1BBBD58625DA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6338B716-E901-42BC-81F7-DF1B39469C48}
+	EndGlobalSection
+EndGlobal

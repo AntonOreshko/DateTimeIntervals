@@ -1,19 +1,21 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using AutoMapper;
-using DateTimeIntervalsServer.Data;
-using DateTimeIntervalsServer.Data.Repositories;
+using DateTimeIntervals.Api.Middleware;
+using DateTimeIntervals.DomainLayer.Data;
+using DateTimeIntervals.DomainLayer.Repositories;
+using DateTimeIntervals.Logger.Data;
+using DateTimeIntervals.Logger.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
-namespace DateTimeIntervalsServer
+namespace DateTimeIntervals.Api
 {
     public class Startup
     {
@@ -24,9 +26,19 @@ namespace DateTimeIntervalsServer
 
         public IConfiguration Configuration { get; }
 
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DateTimeIntervalContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<DateTimeIntervalContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+                sqlServerOptions =>
+                {
+                    sqlServerOptions.MigrationsAssembly("DateTimeIntervals.DomainLayer");
+                }));
+            services.AddDbContext<LoggerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LoggerConnection"),
+                sqlServerOptions =>
+                {
+                    sqlServerOptions.MigrationsAssembly("DateTimeIntervals.Logger");
+                }));
+
             services.AddAutoMapper();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddJsonOptions(opt =>
@@ -36,6 +48,29 @@ namespace DateTimeIntervalsServer
 
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IDateTimeIntervalsRepository, DateTimeIntervalsRepository>();
+            services.AddScoped<ILoggerRepository, LoggerRepository>();
+
+            ConfigureAuth(services);
+
+            var serviceProvider = services.BuildServiceProvider();
+
+            return serviceProvider;
+        }
+
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerRepository logger)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            app.UseMiddleware(typeof(RequestLogMiddleware));
+            app.UseAuthentication();
+            app.UseMvc();
+        }
+
+        protected virtual void ConfigureAuth(IServiceCollection services)
+        {
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -49,28 +84,6 @@ namespace DateTimeIntervalsServer
                         ValidateAudience = false,
                     };
                 });
-
-        }
-
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-        {
-            loggerFactory.AddConsole(LogLevel.Warning);
-
-            app.Run(async (context) =>
-            {
-                var logger = loggerFactory.CreateLogger("RequestInfoLogger");
-                logger.LogInformation("Processing request {0}", context.Request.Path);
-                await context.Response.WriteAsync("Hello World!");
-            });
-
-
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseAuthentication();
-            app.UseMvc();
         }
     }
 }

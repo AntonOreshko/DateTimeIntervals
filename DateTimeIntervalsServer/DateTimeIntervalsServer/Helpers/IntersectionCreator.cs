@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using DateTimeIntervalsServer.Data.DomainModels;
+using DateTimeIntervals.DomainLayer.DomainModels;
 
-namespace DateTimeIntervalsServer.Helpers
+namespace DateTimeIntervals.Api.Helpers
 {
     public static class IntersectionCreator
     {
@@ -11,13 +11,18 @@ namespace DateTimeIntervalsServer.Helpers
 
             foreach (var interval in intervals)
             {
-                if (interval.Begin <= targetInterval.End && targetInterval.Begin <= interval.End)
+                if (HasIntersection(targetInterval, interval))
                 {
                     intersection.Add(interval);
                 }
             }
 
             return intersection;
+        }
+
+        public static bool HasIntersection(DateTimeInterval target, DateTimeInterval compare)
+        {
+            return (compare.Begin <= target.End && target.Begin <= compare.End);
         }
     }
 }

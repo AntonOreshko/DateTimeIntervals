@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using DateTimeIntervalsServer.Data.DomainModels;
-using DateTimeIntervalsServer.Data.Dtos;
+using DateTimeIntervals.DomainLayer.DomainModels;
+using DateTimeIntervals.Dtos.Dtos;
 
-namespace DateTimeIntervalsServer.Helpers
+namespace DateTimeIntervals.Api.Helpers
 {
     public class AutoMapperProfiles: Profile
     {
@@ -14,7 +14,7 @@ namespace DateTimeIntervalsServer.Helpers
 
             CreateMap<DateTimeIntervalForIntersectionDto, DateTimeInterval>();
 
-            CreateMap<User, DateTimeIntervalForReturnDto>();
+            CreateMap<User, UserForReturnDto>();
         }
     }
 }

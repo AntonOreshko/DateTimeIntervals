@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2019
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateTimeIntervalsServer", "DateTimeIntervalsServer\DateTimeIntervalsServer.csproj", "{5C9E8188-B72C-4E80-BA00-EBCB350312CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DateTimeIntervals.Api", "DateTimeIntervalsServer\DateTimeIntervals.Api.csproj", "{5C9E8188-B72C-4E80-BA00-EBCB350312CB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DateTimeIntervals.Tests", "DateTimeIntervalServer.Tests\DateTimeIntervals.Tests.csproj", "{A64C5025-E0E9-4A50-9475-F398D205A86F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateTimeIntervals.DomainLayer", "DateTimeIntervals.DomainModels\DateTimeIntervals.DomainLayer.csproj", "{95B58285-83A2-4A55-8D79-4184DA4CB444}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateTimeIntervals.Logger", "DateTimeIntervals.Logger\DateTimeIntervals.Logger.csproj", "{406BDE1C-48E6-4F6E-8448-365CA06896C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateTimeIntervals.Dtos", "DateTimeIntervals.Dtos\DateTimeIntervals.Dtos.csproj", "{E12D4E55-3E9E-4E99-BA7C-B802EA0FF95F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{5C9E8188-B72C-4E80-BA00-EBCB350312CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C9E8188-B72C-4E80-BA00-EBCB350312CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C9E8188-B72C-4E80-BA00-EBCB350312CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A64C5025-E0E9-4A50-9475-F398D205A86F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A64C5025-E0E9-4A50-9475-F398D205A86F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A64C5025-E0E9-4A50-9475-F398D205A86F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A64C5025-E0E9-4A50-9475-F398D205A86F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95B58285-83A2-4A55-8D79-4184DA4CB444}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95B58285-83A2-4A55-8D79-4184DA4CB444}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95B58285-83A2-4A55-8D79-4184DA4CB444}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95B58285-83A2-4A55-8D79-4184DA4CB444}.Release|Any CPU.Build.0 = Release|Any CPU
+		{406BDE1C-48E6-4F6E-8448-365CA06896C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{406BDE1C-48E6-4F6E-8448-365CA06896C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{406BDE1C-48E6-4F6E-8448-365CA06896C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{406BDE1C-48E6-4F6E-8448-365CA06896C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E12D4E55-3E9E-4E99-BA7C-B802EA0FF95F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E12D4E55-3E9E-4E99-BA7C-B802EA0FF95F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E12D4E55-3E9E-4E99-BA7C-B802EA0FF95F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E12D4E55-3E9E-4E99-BA7C-B802EA0FF95F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
